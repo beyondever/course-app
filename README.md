@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Course List App (Next.js + Prisma + Tailwind CSS)
 
-## Getting Started
+A server-side rendered (SSR) course listing app built with **Next.js 15**, **Prisma**, and **Tailwind CSS**.  
+The app fetches and filters courses directly from the database with zero client-side data fetching.
 
-First, run the development server:
+---
 
+## Features
+- **Server-Side Rendering (SSR):** All courses are fetched on the server using Prisma.  
+- **Filtering by Category & Difficulty:** Supports URL query filtering (e.g., `?category=math`).  
+- **Responsive Design:** Grid layout adapts to various screen sizes with Tailwind CSS.  
+- **Clean UI/UX:** Modern, soft design with hover effects, tags, and buttons.
+
+---
+
+## Installation & Setup
+
+### 1. Clone the Repository  
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/beyondever/course-app.git
+cd course-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Initialise Prisma
+```bash
+npx prisma generate
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Run the Development Server
+```bash
+npm run dev
+```
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Visit the app at http://localhost:3000/courses
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Usage
+- View all courses at /courses.
+- Filter by category or difficulty:
+```
+/courses?category=math
+/courses?difficulty=easy
+```
 
-## Deploy on Vercel
+## Updating the Database (Course Data)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If you want to update or add new course data, you can use manipulate directly in the Prisma Studio simply with the command of `npx prisma studio`, or you can easily update the `seed.ts` file, and then reset the database using `npx prisma migrate reset`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Consideration for further enhancement of UI
+
+- Add pagination to the course list
+- Add links in form of tabs or drop down for the filtering (e.g., `<Link href="/courses?category=math">Math</Link>`)
+- Implement a detail view for each course
